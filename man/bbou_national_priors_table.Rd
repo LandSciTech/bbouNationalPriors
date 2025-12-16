@@ -45,6 +45,6 @@ of Applied Ecology, 57(7), pp.1314-1327.
 https://doi.org/10.1111/1365-2664.13637
 }
 \seealso{
-\code{\link[caribouMetrics:bbouNationalPriors]{caribouMetrics::bbouNationalPriors()}}
+\code{\link[=bbouNationalPriors]{bbouNationalPriors()}}
 }
 \keyword{datasets}
