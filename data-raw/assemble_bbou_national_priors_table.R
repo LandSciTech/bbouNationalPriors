@@ -1,6 +1,8 @@
 wd_out <- getwd()
 setwd("data-raw")
 
+library(dplyr)
+
 # run bbou_national_priors_table in sets of 100 to save intermediate results and
 # prevent slowing down
 shell.exec(file.path(getwd(),"make_table.sh"))

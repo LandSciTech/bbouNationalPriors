@@ -18,8 +18,9 @@ disturbance.}
 \item{fire_excl_anthro}{numeric. Percent fire not overlapping with
 anthropogenic disturbance.}
 
-\item{month}{logical. Does the survival data to be analyzed include month, or
-is it aggregated by year?}
+\item{month}{logical or "both". Should the returned survival be monthly (default)
+or annual. If "both" then monthly survival with the name priors_survival_monthly
+is returned as well as priors_survival.}
 
 \item{force_run_model}{logical. Default is FALSE which means the priors are
 drawn from the pre-calculated \code{bbou_national_priors_table}. When TRUE the
