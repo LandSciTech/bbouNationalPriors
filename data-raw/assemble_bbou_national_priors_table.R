@@ -3,14 +3,15 @@ setwd("data-raw")
 
 library(dplyr)
 
-# run bbou_national_priors_table in sets of 100 to save intermediate results and
-# prevent slowing down
+# This runs bbou_national_priors_table.R in sets of 100 to save intermediate
+# results and prevent slowing down. make_table2.sh runs the second half of the
+# runs and can be run at the same time.
 shell.exec(file.path(getwd(),"make_table.sh"))
 shell.exec(file.path(getwd(),"make_table2.sh"))
 
 while(!file.exists("table52.csv")){
-  #check every 10 mins
-  Sys.sleep(60)
+  #check every 10 mins to see if the last table has been saved
+  Sys.sleep(600)
 }
 
 # once the tables are all saved as csvs compile it into one table and save it in the package.

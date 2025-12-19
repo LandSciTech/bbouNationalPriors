@@ -1,12 +1,9 @@
 ## code to prepare `bbou_national_priors_table` dataset
 
-# This script can be run using make_table.sh which saves a csv after every 100 runs
-# This allows for any interruptions that might occur and seems to prevent the
-# process slowing down too much over many reps.
-# make_table2.sh runs the second half of the runs and can be run at the same time.
+# This script should be run from assemble_bbou_national_priors_table.R which
+# saves a csv after every 100 runs This allows for intermediate results to be
+# saved and seems to prevent the process slowing down too much over many reps.
 
-# once the tables are all saved as csvs you can run assemble_bbou_national_priors_table to
-# compile it into one table and save it in the package.
 
 print("in script")
 stopifnot(requireNamespace("caribouMetrics", quietly = TRUE))
