@@ -9,8 +9,8 @@ print("in script")
 stopifnot(requireNamespace("caribouMetrics", quietly = TRUE))
 library(bbouNationalPriors)
 library(dplyr)
-dist_tbl <- expand.grid(Anthro = 0:100, fire_excl_anthro = 0:100) |>
-  subset((Anthro + fire_excl_anthro) <= 100)
+dist_tbl <- expand.grid(anthro = 0:100, fire_excl_anthro = 0:100) |>
+  subset((anthro + fire_excl_anthro) <= 100)
 
 set <- commandArgs(trailingOnly = TRUE)[1] %>% as.numeric()
 
@@ -24,12 +24,12 @@ out <- lapply(1:nrow(dist_tbl), function(i){
   gc()
   message(i)
   if(i/10 == ceiling(i/10)) tictoc::tic()
-  res <- bbouNationalPriors(dist_tbl$Anthro[i], dist_tbl$fire_excl_anthro[i],
+  res <- bbouNationalPriors(dist_tbl$anthro[i], dist_tbl$fire_excl_anthro[i],
                             force_run_model = TRUE, month = "both")
   res <- unlist(res) |> as.data.frame() |> t()
   colnames(res) <- gsub(pattern = "\\.", replacement = "_", colnames(res))
   res <- as.data.frame(res, row.names = "")
-  res$Anthro <- dist_tbl$Anthro[i]
+  res$anthro <- dist_tbl$anthro[i]
   res$fire_excl_anthro <- dist_tbl$fire_excl_anthro[i]
   if(i/10 == ceiling(i/10)) tictoc::toc()
   res

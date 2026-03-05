@@ -8,7 +8,7 @@
 #'
 #' See `caribouMetrics::betaNationalPriors()` for additional details.
 #'
-#' @param Anthro numeric. Percent non-overlapping buffered anthropogenic
+#' @param anthro numeric. Percent non-overlapping buffered anthropogenic
 #'   disturbance.
 #' @param fire_excl_anthro numeric. Percent fire not overlapping with
 #'   anthropogenic disturbance.
@@ -26,18 +26,17 @@
 #'   See `bb_priors_recruitment` for details.
 #'
 #' @examples
-#' nat_priors <- bbouNationalPriors(Anthro=50,fire=5)
+#' nat_priors <- bbouNationalPriors(anthro=50,fire=5)
 #' print(nat_priors)
 #' @export
 #' @import dplyr
-bbouNationalPriors<-function(Anthro, fire_excl_anthro, month = TRUE, force_run_model = FALSE){
-  #Anthro=5;fire_excl_anthro=1
+bbouNationalPriors<-function(anthro, fire_excl_anthro, month = TRUE, force_run_model = FALSE){
 
-  stopifnot(length(Anthro) == 1 & is.numeric(Anthro))
+  stopifnot(length(anthro) == 1 & is.numeric(anthro))
   stopifnot(length(fire_excl_anthro) == 1 & is.numeric(fire_excl_anthro))
 
   if(!force_run_model){
-    out <- filter(bbou_national_priors_table, .data$Anthro == .env$Anthro,
+    out <- filter(bbou_national_priors_table, .data$anthro == .env$anthro,
                   .data$fire_excl_anthro == .env$fire_excl_anthro)
 
     if(nrow(out) == 1){
@@ -56,7 +55,7 @@ bbouNationalPriors<-function(Anthro, fire_excl_anthro, month = TRUE, force_run_m
     } else if (nrow(out) > 1){
       stop("Duplicate matches with bbou_national_priors_table. Investigate")
     } else {
-      warning("Values of Anthro and fire_excl_anthro did not match integers in ",
+      warning("Values of anthro and fire_excl_anthro did not match integers in ",
               "bbou_national_priors_table, the model will be run. Consider ",
               "rounding to integers for faster processing")
     }
@@ -79,7 +78,7 @@ bbouNationalPriors<-function(Anthro, fire_excl_anthro, month = TRUE, force_run_m
   recruit_dataE=bboudata::bbourecruit_a %>% filter(Year > 2010)
   recruit_dataE[,5:9][recruit_dataE[,5:9]>-1]=NA
 
-  disturbance = data.frame(Year=unique(surv_dataE$Year),Anthro=Anthro,fire_excl_anthro=fire_excl_anthro)
+  disturbance = data.frame(Year=unique(surv_dataE$Year),Anthro=anthro,fire_excl_anthro=fire_excl_anthro)
   modBetaEmpty <- caribouMetrics::bayesianTrajectoryWorkflow(surv_dataE,recruit_dataE,disturbance, returnSamples = TRUE)
 
   Rbar <- subset(modBetaEmpty$result$samples,MetricTypeID=="Rbar")$Amount

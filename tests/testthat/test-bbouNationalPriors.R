@@ -20,17 +20,17 @@ test_that("use model when no match works", {
 })
 
 test_that("bbouNationalPriors works", {
-  expect_error(bbouNationalPriors(Anthro = 1:6, fire_excl_anthro = 1:6*5/10))
-  lowA <- bbouNationalPriors(Anthro = 1, fire_excl_anthro = 1)
-  highA <- bbouNationalPriors(Anthro = 95, fire_excl_anthro = 1)
+  expect_error(bbouNationalPriors(anthro = 1:6, fire_excl_anthro = 1:6*5/10))
+  lowA <- bbouNationalPriors(anthro = 1, fire_excl_anthro = 1)
+  highA <- bbouNationalPriors(anthro = 95, fire_excl_anthro = 1)
 
   # survival is lower when anthro is high
   expect_gt(lowA$priors_survival["b0_mu"], highA$priors_survival["b0_mu"])
 
   # annual survival is lower than monthly
-  annual <- bbouNationalPriors(Anthro = 1, fire_excl_anthro = 1, month = FALSE)
+  annual <- bbouNationalPriors(anthro = 1, fire_excl_anthro = 1, month = FALSE)
 
   expect_gt(lowA$priors_survival["b0_mu"], annual$priors_survival["b0_mu"])
 
-  both <- bbouNationalPriors(Anthro = 1, fire_excl_anthro = 1, month = "both")
+  both <- bbouNationalPriors(anthro = 1, fire_excl_anthro = 1, month = "both")
 })

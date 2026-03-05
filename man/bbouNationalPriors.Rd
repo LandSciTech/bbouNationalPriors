@@ -5,14 +5,14 @@
 \title{Get informative priors for bboutools logistic models}
 \usage{
 bbouNationalPriors(
-  Anthro,
+  anthro,
   fire_excl_anthro,
   month = TRUE,
   force_run_model = FALSE
 )
 }
 \arguments{
-\item{Anthro}{numeric. Percent non-overlapping buffered anthropogenic
+\item{anthro}{numeric. Percent non-overlapping buffered anthropogenic
 disturbance.}
 
 \item{fire_excl_anthro}{numeric. Percent fire not overlapping with
@@ -45,6 +45,6 @@ This is done by ... TO DO.
 See \code{caribouMetrics::betaNationalPriors()} for additional details.
 }
 \examples{
-nat_priors <- bbouNationalPriors(Anthro=50,fire=5)
+nat_priors <- bbouNationalPriors(anthro=50,fire=5)
 print(nat_priors)
 }
