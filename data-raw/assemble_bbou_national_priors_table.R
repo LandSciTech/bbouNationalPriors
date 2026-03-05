@@ -17,7 +17,7 @@ while(!file.exists("table52.csv")){
 # once the tables are all saved as csvs compile it into one table and save it in the package.
 tbls <- list.files(pattern = "table.*.csv") %>% lapply(read.csv)
 bbou_national_priors_table <- do.call(rbind, tbls) |>
-  arrange(fire_excl_anthro, Anthro) |>
+  arrange(fire_excl_anthro, anthro) |>
   select(-any_of(c("X")))
 usethis::use_data(bbou_national_priors_table, overwrite = TRUE)
 usethis::use_data(bbou_national_priors_table, overwrite = TRUE, internal = TRUE)
