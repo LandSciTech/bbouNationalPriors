@@ -78,7 +78,7 @@ bbouNationalPriors<-function(anthro, fire_excl_anthro, month = TRUE, force_run_m
   recruit_dataE=bboudata::bbourecruit_a %>% filter(Year > 2010)
   recruit_dataE[,5:9][recruit_dataE[,5:9]>-1]=NA
 
-  disturbance = data.frame(Year=unique(surv_dataE$Year),Anthro=anthro,fire_excl_anthro=fire_excl_anthro)
+  disturbance = data.frame(Year=unique(surv_dataE$Year),Anthro=anthro,Fire_excl_anthro=fire_excl_anthro)
   modBetaEmpty <- caribouMetrics::bayesianTrajectoryWorkflow(surv_dataE,recruit_dataE,disturbance, returnSamples = TRUE)
 
   Rbar <- subset(modBetaEmpty$result$samples,MetricTypeID=="Rbar")$Amount
